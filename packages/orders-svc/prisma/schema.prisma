@@ -1,0 +1,37 @@
+generator client { provider = "prisma-client-js" }
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Order {
+  id        String   @id @default(cuid())
+  status    String
+  total     Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  items     OrderItem[]
+}
+model OrderItem {
+  id       String @id @default(cuid())
+  orderId  String
+  sku      String
+  qty      Int
+  Order    Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+model Outbox {
+  id        String   @id @default(cuid())
+  topic     String
+  payload   Json
+  createdAt DateTime @default(now())
+  sentAt    DateTime?
+}
+model IdempotencyKey {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  createdAt DateTime @default(now())
+}
+model ProcessedEvent {
+  id        String   @id @default(cuid())
+  eventId   String   @unique
+  createdAt DateTime @default(now())
+}

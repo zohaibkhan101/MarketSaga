@@ -1,0 +1,13 @@
+{
+  "name": "market-saga",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "npm run build -ws",
+    "dev": "npm run dev -ws",
+    "test": "npm run test -ws"
+  }
+}
