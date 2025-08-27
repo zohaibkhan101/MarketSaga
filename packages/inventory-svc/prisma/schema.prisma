@@ -1,8 +1,20 @@
-generator client { provider = "prisma-client-js" }
-datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+generator client { 
+  provider = "prisma-client-js" 
+  }
+datasource db { 
+  provider = "postgresql"; url = env("DATABASE_URL") 
+  }
 model Stock {
   sku    String @id
   qty    Int
 }
-model ProcessedEvent { id String @id @default(cuid()); eventId String @unique; createdAt DateTime @default(now()) }
-model IdempotencyKey { id String @id @default(cuid()); key String @unique; createdAt DateTime @default(now()) }
+model ProcessedEvent { 
+  id String @id @default(cuid()); 
+  eventId String @unique; 
+  createdAt DateTime @default(now()) 
+  }
+model IdempotencyKey { 
+  id String @id @default(cuid()); 
+  key String @unique; 
+  createdAt DateTime @default(now()) 
+  }
