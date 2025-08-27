@@ -1,6 +1,6 @@
 FROM node:20-alpine
 WORKDIR /app
-COPY package.json package-lock.json* .npmrc* ./ 2>/dev/null || true
+COPY package.json package-lock.json* .npmrc* ./ 
 RUN npm i || true
 COPY . .
 RUN npm run build || true
